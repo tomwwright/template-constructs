@@ -12,7 +12,12 @@ export class Project extends Component {
     this.setPath(props.directory ?? "");
   }
 
-  synth(fs?: Filesystem) {
+  synth(fs: Filesystem) {
+    // ensure the directory of the template exists
+    fs.mkdirSync(this.getPath(), {
+      recursive: true,
+    });
+
     const components = collectComponents(this);
     for (const component of components) {
       console.log(`synth: ${component.node.path}`);
