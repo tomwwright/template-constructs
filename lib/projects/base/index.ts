@@ -13,6 +13,10 @@ export class BaseProject extends Project {
   constructor(props: BaseProjectProps) {
     super(props);
 
+    /**
+     * Every project should have a catalog-info.yaml
+     */
+
     this.catalogInfo = new CatalogInfo(this, "CatalogInfo", {
       definition: {
         apiVersion: "backstage.io/v1alpha1",
@@ -28,6 +32,12 @@ export class BaseProject extends Project {
         },
       },
     });
+
+    /**
+     * Every project should have a catalog-info.yaml.
+     * The files are exposed as a prop on the project
+     * for further modification if needed
+     */
 
     this.readme = new File(this, "README", {
       path: "readme.md",

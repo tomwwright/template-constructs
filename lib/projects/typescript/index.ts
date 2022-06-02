@@ -11,13 +11,20 @@ export class TypescriptProject extends BaseProject {
   constructor(props: TypescriptProjectProps) {
     super(props);
 
+    /**
+     * apply changes to the catalog info file
+     */
     this.catalogInfo.file.addOverride({
       spec: {
         type: "library",
         owner: props.team,
+        lifecycle: "development",
       },
     });
 
+    /**
+     * Add package.json
+     */
     this.packageJson = new JsonFile(this, "PackageJson", {
       path: "package.json",
       content: {
@@ -41,6 +48,12 @@ export class TypescriptProject extends BaseProject {
         },
       },
     });
+
+    /**
+     * add some basic code from included template files
+     * this would be extended to support some templating
+     * syntax in the files
+     */
 
     const bin = new Directory(this, "bin");
 
