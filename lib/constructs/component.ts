@@ -10,6 +10,11 @@ export interface ISynthable {
 
 export class Component extends Construct implements ISynthable {
   synth(_?: Filesystem) {}
+
+  getPath(path: string = "") {
+    const contextPath = this.node.tryGetContext("path") ?? "";
+    return _path.join(contextPath, path);
+  }
   setPath(path: string) {
     const contextPath = this.node.tryGetContext("path") ?? "";
     this.node.setContext("path", _path.join(contextPath, path));

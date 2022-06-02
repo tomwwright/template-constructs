@@ -8,14 +8,20 @@ type YamlFileProps = {
 };
 
 export class YamlFile extends Component {
+  public readonly props: YamlFileProps;
   constructor(scope: Component, id: string, props: YamlFileProps) {
     super(scope, id);
+    this.props = Object.assign({}, props);
 
-    const content = yaml.stringify(props.content);
+    const content = () => yaml.stringify(this.props.content);
 
     new File(this, id, {
       path: props.path,
       content,
     });
+  }
+
+  addOverride(content: any) {
+    Object.assign(this.props.content, content);
   }
 }

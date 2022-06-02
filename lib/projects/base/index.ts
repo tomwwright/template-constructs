@@ -1,4 +1,4 @@
-import { CatalogInfo, CatalogInfoProps } from "../../constructs/catalogInfo";
+import { CatalogInfo } from "../../constructs/catalogInfo";
 import { File } from "../../constructs/file";
 import { Project, ProjectProps } from "../../constructs/project";
 
@@ -8,8 +8,8 @@ export type BaseProjectProps = ProjectProps & {
 };
 
 export class BaseProject extends Project {
-  public readonly catalogInfo;
-  public readonly readme;
+  public readonly catalogInfo: CatalogInfo;
+  public readonly readme: File;
   constructor(props: BaseProjectProps) {
     super(props);
 
@@ -21,7 +21,6 @@ export class BaseProject extends Project {
           name: props.name,
           description: props.description,
         },
-        annotations: {},
         spec: {
           type: "service",
           owner: props.team,

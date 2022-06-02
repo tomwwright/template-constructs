@@ -1,19 +1,23 @@
 import { Component } from "./component";
 import { File } from "./file";
 
-type JsonProps = {
+type JsonFileProps = {
   path: string;
   content: any;
 };
 
-export class JsonFile extends File {
-  private readonly promise: Promise<string>;
-  constructor(scope: Component, id: string, props: JsonProps) {
-    super(scope, id, props);
+export class JsonFile extends Component {
+  private readonly props: JsonFileProps;
+  constructor(scope: Component, id: string, props: JsonFileProps) {
+    super(scope, id);
 
     new File(this, "Json", {
       path: props.path,
-      content: JSON.stringify(props.content, null, 2),
+      content: () => JSON.stringify(props.content, null, 2),
     });
+  }
+
+  addOverride(content: any) {
+    Object.assign(this.props.content, content);
   }
 }

@@ -1,12 +1,16 @@
-import { Component } from "./component";
-
-export type DirectoryProps = {
-  path: string;
-};
+import { Component, Filesystem } from "./component";
 
 export class Directory extends Component {
-  constructor(scope: Component, id: string, props: DirectoryProps) {
-    super(scope, id);
-    this.setPath(props.path);
+  private readonly path: string;
+  constructor(scope: Component, path: string) {
+    super(scope, path);
+    this.path = path;
+    this.setPath(this.path);
+  }
+
+  synth(fs: Filesystem) {
+    fs.mkdirSync(this.getPath(), {
+      recursive: true,
+    });
   }
 }

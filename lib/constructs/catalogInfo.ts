@@ -12,10 +12,11 @@ export type CatalogInfoProps = {
         title: string;
         url: string;
       }[];
+      annotations?: {
+        [annotation: string]: string;
+      };
     };
-    annotations: {
-      [annotation: string]: string;
-    };
+
     spec: {
       type: "library" | "service" | "website";
       owner: string;
@@ -25,11 +26,11 @@ export type CatalogInfoProps = {
 };
 
 export class CatalogInfo extends Component {
-  public readonly yamlFile;
+  public readonly file: YamlFile;
   constructor(scope: Component, id: string, props: CatalogInfoProps) {
     super(scope, id);
 
-    this.yamlFile = new YamlFile(this, "YamlFile", {
+    this.file = new YamlFile(this, "YamlFile", {
       path: "catalog-info.yaml",
       content: props.definition,
     });

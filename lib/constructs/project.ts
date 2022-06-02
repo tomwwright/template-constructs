@@ -15,6 +15,7 @@ export class Project extends Component {
   synth(fs?: Filesystem) {
     const components = collectComponents(this);
     for (const component of components) {
+      console.log(`synth: ${component.node.path}`);
       component.synth(fs);
     }
     return true;

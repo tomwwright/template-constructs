@@ -13,6 +13,9 @@ export class TemplateFile extends Component {
   }
 
   synth(fs: Filesystem) {
-    fs.writeFileSync(this.props.path, fs.readFileSync(this.props.template));
+    fs.writeFileSync(
+      this.getPath(this.props.path),
+      fs.readFileSync(this.props.template)
+    );
   }
 }
