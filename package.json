@@ -1,0 +1,21 @@
+{
+  "name": "template-constructs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "app:run": "ts-node bin/index.ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/node": "10.17.27",
+    "ts-node": "^9.0.0",
+    "typescript": "~3.9.7"
+  },
+  "dependencies": {
+    "constructs": "^10.1.24",
+    "source-map-support": "^0.5.16",
+    "yaml": "^2.1.1"
+  }
+}
